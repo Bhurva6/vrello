@@ -1,28 +1,59 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
 const passport = require('passport');
-const authRoutes = require('./routes/authRoutes');
-const taskRoutes = require('./routes/taskRoutes');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const keys = require('./config/keys');
+const User = require('./models/User');
 
-const app = express();
+passport.use(new GoogleStrategy({
+  clientID: keys.googleClientID,
+  clientSecret: keys.googleClientSecret,
+  callbackURL: '/api/auth/google/callback'
+},
+async (accessToken, refreshToken, profile, done) => {
+  const { id, emails, photos } = profile;
+  const email = emails[0].value;
+  const avatar = photos[0].value;
 
-// Middleware
-app.use(bodyParser.json());
-app.use(cors());
-app.use(passport.initialize());
+  try {
+    let user = await User.findOne({ googleId: id });
+    if (user) {
+      return done(null, user);
+    }
 
-// Database connection
-mongoose.connect('mongodb://localhost:27017/vrello', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+    user = new User({
+      googleId: id,
+      email,
+      avatar
+    });
 
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/tasks', taskRoutes);
+    await user.save();
+    done(null, user);
+  } catch (err) {
+    console.error(err.message);
+    done(err, null);
+  }
+}));
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.get('/api/auth/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] })
+);
+
+app.get('/api/auth/google/callback',
+  passport.authenticate('google', { session: false }),
+  (req, res) => {
+    const payload = {
+      user: {
+        id: req.user.id
+      }
+    };
+
+    jwt.sign(
+      payload,
+      keys.jwtSecret,
+      { expiresIn: 360000 },
+      (err, token) => {
+        if (err) throw err;
+        res.redirect(`http://localhost:3000?token=${token}`);
+      }
+    );
+  }
+);
