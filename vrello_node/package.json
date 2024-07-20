@@ -1,9 +1,11 @@
 {
   "name": "vrello_node",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend for Vrello project",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
+    "lint": "eslint . --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,9 +16,14 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "firebase-admin": "^11.8.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.1",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0"
   }
 }
