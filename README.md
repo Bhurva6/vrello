@@ -50,3 +50,9 @@ Vrello is a task management application similar to Trello, allowing users to cre
    ```bash
    git clone https://github.com/your-username/vrello.git
    cd vrello
+   
+2. Clone the repository
+ ```bash
+cd backend
+npm install
+
