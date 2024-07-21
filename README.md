@@ -13,30 +13,11 @@ https://vrello.vercel.app/
 
 ## Features
 
-- **User Authentication**
-  - User registration and login
-  - Google login authentication
-- **Task Management**
-  - Create, read, update, and delete tasks
-  - Move tasks between columns using drag-and-drop
-- **User Interface**
-  - Responsive and intuitive design based on provided mockups
-  - Authentication required on every page
-- **Backend API**
-  - RESTful API for handling CRUD operations for tasks
-  - Routes for user registration, login, and Google login
-- **Data Storage**
-  - Tasks and user information stored in MongoDB
-- **Validation**
-  - Server-side validation for task data and user information
-- **Error Handling**
-  - Proper error messages and status codes
-
-## Bonus Features
-
-- User profiles with avatars
-- Task due dates
-- Task searching capabilities
+- **Google login authentication**
+- **Create, read, update, and delete tasks**
+- **Move tasks between columns using drag-and-drop**
+- **Search for particular tasks**
+- **Set Due dates for tasks**
 
 ## Tech Stack
 
