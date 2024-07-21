@@ -9,7 +9,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       element={props => {
-        return currentUser ? <Component {...props} /> : <Navigate to="/login" />;
+        return currentUser ? <Component {...props} /> : <Navigate to="/" />;
       }}
     />
   );
