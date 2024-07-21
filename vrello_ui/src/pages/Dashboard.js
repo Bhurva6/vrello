@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import Task from '../components/Task';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
 
 const Dashboard = () => {
   const { currentUser, logout } = useAuth();
@@ -11,6 +13,7 @@ const Dashboard = () => {
   const [sortBy, setSortBy] = useState('date');
   const [tasks, setTasks] = useState([]);
   const [taskToEdit, setTaskToEdit] = useState(null);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -77,22 +80,25 @@ const Dashboard = () => {
     t.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleProfileClick = () => {
+    navigate('/profile');
+  };
+
+
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <div>
-        <nav style={styles.navbar}>
-          <div style={styles.userSection}>
-            <img
-              src="/bitmoji.png"
-              alt="User Avatar"
-              style={styles.userImage}
-            />
-            <h2>Welcome, {currentUser && currentUser.displayName}</h2>
-          </div>
-          <button style={styles.logoutButton} onClick={handleLogout}>
-            Logout
-          </button>
-        </nav>
+      <nav style={styles.navbar}>
+        <div style={styles.userSection} onClick={handleProfileClick}>
+        <img src={currentUser.photoURL || "/default-avatar.png"} alt="User Avatar" style={styles.userImage} />
+          <h2 style={styles.userName}>
+            Welcome, {currentUser && currentUser.displayName}
+          </h2>
+        </div>
+        <button style={styles.logoutButton} onClick={handleLogout}>
+          Logout
+        </button>
+      </nav>
         <div style={styles.content}>
           <button style={styles.addButton} onClick={handleShowPopup}>Add Task</button>
           {showPopup && (
@@ -243,6 +249,10 @@ const styles = {
   userSection: {
     display: 'flex',
     alignItems: 'center',
+    cursor: 'pointer',
+    color:'white',
+    position: 'relative',
+    transition: 'color 0.3s',
   },
   userImage: {
     width: '40px',
@@ -251,6 +261,13 @@ const styles = {
     marginRight: '10px',
     backgroundColor: 'white'
   },
+  userName: {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'relative',
+    color: '#fff',
+  },
+
   logoutButton: {
     backgroundColor: '#FF8811',
     color: '#fff',
@@ -361,3 +378,4 @@ const styles = {
 };
 
 export default Dashboard;
+
