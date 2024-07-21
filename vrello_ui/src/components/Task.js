@@ -1,5 +1,6 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
+import { formatDistanceToNow } from 'date-fns';
 
 const Task = ({ tasks, onEdit, onDelete }) => {
   const [viewingTask, setViewingTask] = React.useState(null);
@@ -31,13 +32,16 @@ const Task = ({ tasks, onEdit, onDelete }) => {
               {...provided.dragHandleProps}
               style={{ ...styles.taskCard, ...provided.draggableProps.style }}
             >
-              <h4>{task.title}</h4>
+              <div style={styles.taskHeader}>
+                <h4>{task.title}</h4>
+                <small>{formatDistanceToNow(new Date(task.timestamp))} ago</small>
+              </div>
               <p>{task.description}</p>
               <small>Created on: {new Date(task.timestamp).toLocaleString()}</small>
               <div style={styles.cardActions}>
-              <button onClick={() => handleEdit(task)} style={{ ...styles.cardButton, ...styles.editButton }}>Edit</button>
-  <button onClick={() => handleDelete(task.id)} style={{ ...styles.cardButton, ...styles.deleteButton }}>Delete</button>
-  <button onClick={() => handleViewDetails(task)} style={{ ...styles.cardButton, ...styles.viewDetailsButton }}>View Details</button>
+                <button onClick={() => handleEdit(task)} style={{ ...styles.cardButton, ...styles.editButton }}>Edit</button>
+                <button onClick={() => handleDelete(task.id)} style={{ ...styles.cardButton, ...styles.deleteButton }}>Delete</button>
+                <button onClick={() => handleViewDetails(task)} style={{ ...styles.cardButton, ...styles.viewDetailsButton }}>View Details</button>
               </div>
             </div>
           )}
@@ -67,6 +71,11 @@ const styles = {
     marginBottom: '10px',
     boxShadow: '0px 0px 5px rgba(0,0,0,0.1)',
     transition: 'background-color 0.2s ease',
+  },
+  taskHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   cardActions: {
     display: 'flex',

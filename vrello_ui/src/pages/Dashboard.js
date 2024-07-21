@@ -12,11 +12,9 @@ const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [taskToEdit, setTaskToEdit] = useState(null);
 
-
   const handleLogout = async () => {
     try {
       await logout();
-      // Handle successful logout, e.g., redirect to login page
     } catch (error) {
       console.error('Logout failed:', error);
     }
@@ -82,19 +80,19 @@ const Dashboard = () => {
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <div>
-      <nav style={styles.navbar}>
-    <div style={styles.userSection}>
-      <img
-        src="/bitmoji.png"
-        alt="User Avatar"
-        style={styles.userImage}
-      />
-      <h2>Welcome, {currentUser && currentUser.email}</h2>
-    </div>
-    <button style={styles.logoutButton} onClick={handleLogout}>
-      Logout
-    </button>
-  </nav>
+        <nav style={styles.navbar}>
+          <div style={styles.userSection}>
+            <img
+              src="/bitmoji.png"
+              alt="User Avatar"
+              style={styles.userImage}
+            />
+            <h2>Welcome, {currentUser && currentUser.displayName}</h2>
+          </div>
+          <button style={styles.logoutButton} onClick={handleLogout}>
+            Logout
+          </button>
+        </nav>
         <div style={styles.content}>
           <button style={styles.addButton} onClick={handleShowPopup}>Add Task</button>
           {showPopup && (
@@ -132,24 +130,24 @@ const Dashboard = () => {
                     />
                   </div>
                   <div style={styles.formGroup}>
-          <label htmlFor="dueDate">Task Due At</label>
-          <input
-            type="date"
-            id="dueDate"
-            name="dueDate"
-            value={task.dueDate}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
+                    <label htmlFor="dueDate">Task Due At</label>
+                    <input
+                      type="date"
+                      id="dueDate"
+                      name="dueDate"
+                      value={task.dueDate}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
                   <div style={styles.buttonContainer}>
-    <button style={styles.submitButton} type="submit">
-      {taskToEdit ? 'Update' : 'Submit'}
-    </button>
-    <button style={styles.cancelButton} type="button" onClick={handleClosePopup}>
-      Cancel
-    </button>
-  </div>
+                    <button style={styles.submitButton} type="submit">
+                      {taskToEdit ? 'Update' : 'Submit'}
+                    </button>
+                    <button style={styles.cancelButton} type="button" onClick={handleClosePopup}>
+                      Cancel
+                    </button>
+                  </div>
                 </form>
               </div>
             </div>
@@ -235,12 +233,12 @@ const styles = {
     padding: '10px',
     backgroundColor: '#392F5A',
     color: '#fff',
-    width: '100vw', 
-    margin: 0, 
-    position: 'fixed', 
-    top: 0, 
-    left: 0, 
-    zIndex: 2, 
+    width: '100vw',
+    margin: 0,
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    zIndex: 2,
   },
   userSection: {
     display: 'flex',
@@ -251,21 +249,21 @@ const styles = {
     height: '40px',
     borderRadius: '50%',
     marginRight: '10px',
-    backgroundColor:'white'
+    backgroundColor: 'white'
   },
   logoutButton: {
     backgroundColor: '#FF8811',
     color: '#fff',
     border: 'none',
     padding: '12px',
-    marginRight:'30px',
+    marginRight: '30px',
     cursor: 'pointer',
-    borderRadius:'50px',
-    fontSize:'16px',
+    borderRadius: '50px',
+    fontSize: '16px',
   },
   content: {
     padding: '20px',
-    marginTop: '80px', 
+    marginTop: '80px',
   },
   addButton: {
     margin: '10px 0',
@@ -274,8 +272,8 @@ const styles = {
     color: '#fff',
     border: 'none',
     cursor: 'pointer',
-    borderRadius:'50px',
-    fontSize:'20px'
+    borderRadius: '50px',
+    fontSize: '20px'
   },
   popup: {
     position: 'fixed',
@@ -296,17 +294,17 @@ const styles = {
     fontFamily: '"Roboto", sans-serif',
     display: 'flex',
     flexDirection: 'column',
-    marginBottom: '20px' 
+    marginBottom: '20px'
   },
   label: {
     fontFamily: '"Roboto", sans-serif',
-    marginBottom: '10px' 
+    marginBottom: '10px'
   },
   input: {
     fontFamily: '"Roboto", sans-serif',
-    padding: '8px', 
-    borderRadius: '4px', 
-    border: '1px solid #ccc' 
+    padding: '8px',
+    borderRadius: '4px',
+    border: '1px solid #ccc'
   },
   timestamp: {
     display: 'block',
@@ -315,7 +313,7 @@ const styles = {
   },
   buttonContainer: {
     display: 'flex',
-    gap:'10px'
+    gap: '10px'
   },
   submitButton: {
     backgroundColor: '#4F9D69',
