@@ -82,11 +82,10 @@ const Dashboard = () => {
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <div>
         <nav style={styles.navbar}>
-          <h1>Task Management</h1>
+        <h2>Welcome, {currentUser && currentUser.email}</h2>
           <button style={styles.logoutButton} onClick={handleLogout}>Logout</button>
         </nav>
         <div style={styles.content}>
-          <h2>Welcome, {currentUser && currentUser.email}</h2>
           <button style={styles.addButton} onClick={handleShowPopup}>Add Task</button>
           {showPopup && (
             <div style={styles.popup}>
@@ -122,8 +121,14 @@ const Dashboard = () => {
                       readOnly
                     />
                   </div>
-                  <button type="submit">{taskToEdit ? 'Update' : 'Submit'}</button>
-                  <button type="button" onClick={handleClosePopup}>Cancel</button>
+                  <div style={styles.buttonContainer}>
+    <button style={styles.submitButton} type="submit">
+      {taskToEdit ? 'Update' : 'Submit'}
+    </button>
+    <button style={styles.cancelButton} type="button" onClick={handleClosePopup}>
+      Cancel
+    </button>
+  </div>
                 </form>
               </div>
             </div>
@@ -207,33 +212,38 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '10px',
-    backgroundColor: '#000080',
+    backgroundColor: '#392F5A',
     color: '#fff',
-    width: '100vw', // Ensure it takes the full width of the viewport
-    margin: 0, // Remove any default margin
-    position: 'fixed', // Make it fixed at the top
-    top: 0, // Align it to the top of the screen
-    left: 0, // Align it to the left of the screen
-    zIndex: 2, // Ensure it is above other elements
+    width: '100vw', 
+    margin: 0, 
+    position: 'fixed', 
+    top: 0, 
+    left: 0, 
+    zIndex: 2, 
   },
   logoutButton: {
-    backgroundColor: '#f00',
+    backgroundColor: '#FF8811',
     color: '#fff',
     border: 'none',
-    padding: '10px',
+    padding: '12px',
+    marginRight:'30px',
     cursor: 'pointer',
+    borderRadius:'50px',
+    fontSize:'16px',
   },
   content: {
     padding: '20px',
-    marginTop: '50px', 
+    marginTop: '80px', 
   },
   addButton: {
     margin: '10px 0',
-    padding: '10px',
-    backgroundColor: '#007bff',
+    padding: '20px',
+    backgroundColor: '#FF0054',
     color: '#fff',
     border: 'none',
     cursor: 'pointer',
+    borderRadius:'50px',
+    fontSize:'20px'
   },
   popup: {
     position: 'fixed',
@@ -241,12 +251,13 @@ const styles = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '300px',
-    backgroundColor: '#fff',
+    backgroundColor: '#FFF8F0',
     border: '1px solid #ccc',
     boxShadow: '0px 0px 10px rgba(0,0,0,0.1)',
     zIndex: 1000,
   },
   popupContent: {
+    fontFamily: '"Roboto", sans-serif',
     padding: '20px',
   },
   formGroup: {
@@ -270,20 +281,25 @@ const styles = {
     marginTop: '5px',
     color: '#808080'
   },
-  button: {
-    padding: '10px 20px',
-    borderRadius: '5px',
-    border: 'none',
-    color: '#fff',
-    cursor: 'pointer',
-    fontSize: '16px',
-    margin: '5px', 
+  buttonContainer: {
+    display: 'flex',
+    gap:'10px'
   },
   submitButton: {
-    backgroundColor: '#14591D', 
+    backgroundColor: '#4F9D69',
+    color: 'white',
+    padding: '10px 20px',
+    border: 'none',
+    borderRadius: '50px',
+    cursor: 'pointer',
   },
   cancelButton: {
-    backgroundColor: '#dc3545', 
+    backgroundColor: '#dc3545',
+    color: 'white',
+    padding: '10px 20px',
+    border: 'none',
+    borderRadius: '50px',
+    cursor: 'pointer',
   },
   searchContainer: {
     marginTop: '20px',
@@ -306,7 +322,7 @@ const styles = {
     fontFamily: '"Roboto", sans-serif',
     display: 'flex',
     justifyContent: 'space-between',
-    marginTop: '20px'
+    marginTop: '20px',
   },
   column: {
     flex: 1,
