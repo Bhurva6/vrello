@@ -12,6 +12,7 @@ const Dashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [taskToEdit, setTaskToEdit] = useState(null);
 
+
   const handleLogout = async () => {
     try {
       await logout();
@@ -81,10 +82,19 @@ const Dashboard = () => {
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <div>
-        <nav style={styles.navbar}>
-        <h2>Welcome, {currentUser && currentUser.email}</h2>
-          <button style={styles.logoutButton} onClick={handleLogout}>Logout</button>
-        </nav>
+      <nav style={styles.navbar}>
+    <div style={styles.userSection}>
+      <img
+        src="/bitmoji.png"
+        alt="User Avatar"
+        style={styles.userImage}
+      />
+      <h2>Welcome, {currentUser && currentUser.email}</h2>
+    </div>
+    <button style={styles.logoutButton} onClick={handleLogout}>
+      Logout
+    </button>
+  </nav>
         <div style={styles.content}>
           <button style={styles.addButton} onClick={handleShowPopup}>Add Task</button>
           {showPopup && (
@@ -121,6 +131,17 @@ const Dashboard = () => {
                       readOnly
                     />
                   </div>
+                  <div style={styles.formGroup}>
+          <label htmlFor="dueDate">Task Due At</label>
+          <input
+            type="date"
+            id="dueDate"
+            name="dueDate"
+            value={task.dueDate}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
                   <div style={styles.buttonContainer}>
     <button style={styles.submitButton} type="submit">
       {taskToEdit ? 'Update' : 'Submit'}
@@ -220,6 +241,17 @@ const styles = {
     top: 0, 
     left: 0, 
     zIndex: 2, 
+  },
+  userSection: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  userImage: {
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    marginRight: '10px',
+    backgroundColor:'white'
   },
   logoutButton: {
     backgroundColor: '#FF8811',
