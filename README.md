@@ -9,12 +9,6 @@ https://vrello.vercel.app/
 
 https://github.com/user-attachments/assets/7a3365f2-287f-413b-8761-540d39e2825f
 
-## Screenshots
-<img width="1465" alt="Screenshot 2024-07-21 at 5 31 42 PM" src="https://github.com/user-attachments/assets/7ee03fd5-679e-458a-9926-c700124d9209">
-<img width="1470" alt="Screenshot 2024-07-21 at 5 32 07 PM" src="https://github.com/user-attachments/assets/dca8123b-1558-4c17-896f-c9fa0171c647">
-<img width="1470" alt="Screenshot 2024-07-21 at 5 32 34 PM" src="https://github.com/user-attachments/assets/57045233-d0ec-45b3-84c8-aaaca7c17392">
-<img width="1470" alt="Screenshot 2024-07-21 at 5 35 18 PM" src="https://github.com/user-attachments/assets/1dfb41e9-a338-4144-b584-319666f015ac">
-
 ## Features
 
 - **Google login authentication**
@@ -23,6 +17,13 @@ https://github.com/user-attachments/assets/7a3365f2-287f-413b-8761-540d39e2825f
 - **Search for particular tasks**
 - **Set Due dates for tasks**
 - **Upload Profile Photo**
+
+## Screenshots
+<img width="1465" alt="Screenshot 2024-07-21 at 5 31 42 PM" src="https://github.com/user-attachments/assets/7ee03fd5-679e-458a-9926-c700124d9209">
+<img width="1470" alt="Screenshot 2024-07-21 at 5 32 07 PM" src="https://github.com/user-attachments/assets/dca8123b-1558-4c17-896f-c9fa0171c647">
+<img width="1470" alt="Screenshot 2024-07-21 at 5 32 34 PM" src="https://github.com/user-attachments/assets/57045233-d0ec-45b3-84c8-aaaca7c17392">
+<img width="1470" alt="Screenshot 2024-07-21 at 5 35 18 PM" src="https://github.com/user-attachments/assets/1dfb41e9-a338-4144-b584-319666f015ac">
+
 
 ## Tech Stack
 
